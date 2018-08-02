@@ -22,6 +22,17 @@ install:
   - go get github.com/FiloSottile/vendorcheck
   # Install gometalinter
   - go get github.com/alecthomas/gometalinter
+  # Build and package
+  - go get github.com/caddyserver/builds
+  - cd caddy
+  - go run build.go
+  - 7z a ..\caddy.zip caddy.exe
+  - .\caddy.exe -version
+  - .\caddy.exe -plugins
+  - cd ..
+
+artifacts:
+  - path: caddy.zip
 
 build: off
 
